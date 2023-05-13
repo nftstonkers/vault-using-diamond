@@ -1,0 +1,17 @@
+#compilations and cache
+.idea
+package-lock.json
+
+
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+deployments
+
+# Hardhat files
+cache
+artifacts
+

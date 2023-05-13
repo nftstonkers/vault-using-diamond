@@ -1,4 +1,4 @@
-import { run } from "hardhat"
+import {run} from "hardhat"
 
 const verify = async (contractAddresses: string, args: any[]) => {
     console.log("Verifying Contract...")

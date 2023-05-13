@@ -2,11 +2,11 @@
 pragma solidity ^0.8.17;
 
 import "forge-std/Test.sol";
-import {DiamondVaultFacetV2} from "../contracts/facets/DiamondVaultFacetV2.sol";
+import {WithdrawFacet} from "../contracts/facets/WithdrawFacet.sol";
 import {IERC20} from "../contracts/interfaces/IERC20.sol";
 import {ERC20Mock} from "./mocks/ERC20Mock.sol";
 
-contract MockDiamondVaultFacetV2 is DiamondVaultFacetV2 {
+contract MockWithdrawFacet is WithdrawFacet {
     function setTestBalance(address _token, address _user, uint256 _amount) public {
         data.balances[_token][_user] = _amount;
     }
@@ -16,13 +16,13 @@ contract MockDiamondVaultFacetV2 is DiamondVaultFacetV2 {
     }
 }
 
-contract DiamondVaultFacetV2Test is Test {
-    MockDiamondVaultFacetV2 diamondVaultFacetV2;
+contract WithdrawFacetTest is Test {
+    MockWithdrawFacet diamondVaultFacetV2;
     ERC20Mock erc20;
     uint256 initialBalance = 10000 * 10 ** 18;
 
     function setUp() public {
-        diamondVaultFacetV2 = new MockDiamondVaultFacetV2();
+        diamondVaultFacetV2 = new MockWithdrawFacet();
         erc20 = new ERC20Mock(initialBalance, address(diamondVaultFacetV2));
         diamondVaultFacetV2.setTestBalance(address(0), address(this), initialBalance);
         diamondVaultFacetV2.setTestBalance(address(erc20), address(this), initialBalance);

@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity 0.8.18;
 
 import {AppStorage} from "../storage/AppStorage.sol";
 import {IERC20} from "../interfaces/IERC20.sol";
 import {Modifier} from "../abstract/Modifier.sol";
 
 /**
- * @dev DiamondVaultFacetV1 has all functions allowing depositing of any native or ERC20 token.
+ * @dev DepositFacet has all functions allowing depositing of any native or ERC20 token.
  */
-contract DiamondVaultFacetV1 is Modifier {
+contract DepositFacet is Modifier {
     /// @dev This emits whenever there is any deposit to the Vault
     event VaultDeposit(address indexed _contract, address indexed _user, uint256 amount);
 

@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity 0.8.18;
 
 import {AppStorage} from "../storage/AppStorage.sol";
 import {IERC20} from "../interfaces/IERC20.sol";
 import {Modifier} from "../abstract/Modifier.sol";
 
 /**
- * @dev DiamondVaultFacetVw has all functions allowing withdrawal of any native or ERC20 token.
+ * @dev WithdrawFacet has all functions allowing withdrawal of any native or ERC20 token.
  */
-contract DiamondVaultFacetV2 is Modifier {
+contract WithdrawFacet is Modifier {
     /// @dev This emits whenever there is any withdraw from the Vault
     event VaultWithdraw(address indexed _contract, address indexed _user, uint256 amount);
 

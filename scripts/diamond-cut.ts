@@ -1,5 +1,5 @@
-import { ethers } from "hardhat";
-import { DiamondCutFacet } from "../typechain-types"
+import {ethers} from "hardhat";
+import {DiamondCutFacet} from "../typechain-types"
 
 
 const createDiamondCut = (cut: [string, string[]][]) => {
@@ -15,13 +15,6 @@ async function createCuts(diamondAddress: string, cuts: [string, string[]][], si
     // Get a fully typed contract instance
     const diamond = (await ethers.getContractAt("DiamondCutFacet", diamondAddress, signer)) as DiamondCutFacet;
 
-    // Prepare the diamondCut array
-    // const diamondCut = cuts.map(([facetAddress, functionSignatures]) => [
-    //     facetAddress,
-    //     functionSignatures.map((signature) => ethers.utils.id(signature)),
-    //     ethers.utils.defaultAbiCoder.encode(['uint8[]'], [[0]]) // the 'action' parameter for each function - 0 means adding a new function
-    // ]);
-
     // Call diamondCut
     const tx = await diamond.diamondCut(createDiamondCut(cuts), ethers.constants.AddressZero, "0x");
     await tx.wait();
@@ -29,7 +22,8 @@ async function createCuts(diamondAddress: string, cuts: [string, string[]][], si
 
 
 async function addDiamondCut(diamondAddress, diamondCut, deployer) {
-    const signer = await ethers.getSigner(deployer);;
+    const signer = await ethers.getSigner(deployer);
+    ;
     console.log(signer.address)
     await createCuts(diamondAddress, diamondCut, signer);
 }

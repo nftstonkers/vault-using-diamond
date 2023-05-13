@@ -15,6 +15,9 @@ export const networkConfig: networkConfigInfo = {
     11155111: {
         name: "sepolia",
     },
+    8001: {
+        name: "mumbai"
+    }
 }
 
 export const developmentChains = ["hardhat", "localhost"]

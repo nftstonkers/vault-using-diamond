@@ -1,14 +1,21 @@
-import { HardhatUserConfig } from "hardhat/config";
+import { HardhatUserConfig, task } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "hardhat-deploy"
 import "hardhat-contract-sizer"
 import "dotenv/config"
 import "@nomicfoundation/hardhat-foundry";
+import { execSync } from "child_process";
 
 
-const SEPOLIA_PRIVATE_KEY = process.env.SEPOLIA_PRIVATE_KEY
+const PRIVATE_KEY = process.env.PRIVATE_KEY
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || ""
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
+const POLYSCAN_API_KEY = process.env.POLYSCAN_API_KEY || ""
+const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL || ""
+
+task("test", "Runs forge test", async () => {
+  execSync("forge test -vvv ", { stdio: "inherit" });
+});
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -34,15 +41,21 @@ const config: HardhatUserConfig = {
     },
     sepolia: {
       url: SEPOLIA_RPC_URL,
-      accounts: (SEPOLIA_PRIVATE_KEY !== undefined ? [SEPOLIA_PRIVATE_KEY] : []),
+      accounts: (PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : []),
       saveDeployments: true,
       chainId: 11155111,
     },
+    mumbai: {
+      url: MUMBAI_RPC_URL,
+      accounts: (PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : []),
+      saveDeployments: true,
+      chainId: 80001,
+    },
   },
   etherscan: {
-    // npx hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
     apiKey: {
-      sepolia: ETHERSCAN_API_KEY
+      sepolia: ETHERSCAN_API_KEY,
+      polygonMumbai: POLYSCAN_API_KEY
     },
   },
   namedAccounts: {

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nftstonkers/vault-using-diamond#readme",
   "devDependencies": {
+    "@nomicfoundation/hardhat-foundry": "^1.0.1",
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "@nomiclabs/hardhat-ethers": "^2.2.3",
     "ethers": "^5.7.2",

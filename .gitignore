@@ -14,4 +14,8 @@ deployments
 # Hardhat files
 cache
 artifacts
+out
+cache_forge
+lib
+
 

@@ -3,6 +3,8 @@ import "@nomicfoundation/hardhat-toolbox";
 import "hardhat-deploy"
 import "hardhat-contract-sizer"
 import "dotenv/config"
+import "@nomicfoundation/hardhat-foundry";
+
 
 const SEPOLIA_PRIVATE_KEY = process.env.SEPOLIA_PRIVATE_KEY
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || ""
